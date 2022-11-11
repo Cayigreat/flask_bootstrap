@@ -6,12 +6,16 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
-    return 'Hola Mundo'
+def hello_world():
+    return render_template('index.html')
 
 @app.route('/usuario/<name>')
 def user(name):
-    return render_template('user.html', name = name)
+    return render_template('user.html', user = name)
+
+@app.route('/usuario')
+def user_incognito():
+    return render_template('user.html')
 
 @app.route('/navegador')    
 def browser():
