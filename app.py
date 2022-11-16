@@ -16,11 +16,12 @@ class Message(db.Model):
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'<Message {self.title}       >'
+        return f'<Message {self.title}>'
 
 
 @app.route('/')
 def index():
+    messages = Message.query.all()
     return render_template('index.html', messages = messages)
 
 @app.route('/create', methods = ('GET', 'POST'))
@@ -28,13 +29,14 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-
         if not title:
             flash('El título es obligatorio')
         elif not content:
             flash('El contenido es obligatorio')  
         else:
-            messages.append({'title': title, 'content':content})      
+            message = Message(title = title, content = content)    
+            db.session.add(message)
+            db.session.commit()
             return redirect(url_for('index'))
     return render_template('create.html')
 
