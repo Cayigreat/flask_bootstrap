@@ -1,4 +1,5 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for, flash
+from app.extensions import db
 from app.messages import bp
 from app.models.message import Message
 
@@ -22,8 +23,8 @@ def create():
             message = Message(title = title, content = content, picture = picture)    
             db.session.add(message)
             db.session.commit()
-            return redirect(url_for('index'))
-    return render_template('create.html')
+            return redirect(url_for('messages.index'))
+    return render_template('messages/create.html')
 
 @bp.route('/<id>/update', methods = ('GET', 'POST'))
 def update(id):
@@ -36,7 +37,7 @@ def update(id):
             db.session.commit()
             return redirect('/')
 
-    return render_template('update.html', message =message)
+    return render_template('messages/update.html', message =message)
 
 @bp.route('/delete', methods = ['POST'])    
 def delete():
