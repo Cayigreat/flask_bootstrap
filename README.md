@@ -36,9 +36,19 @@ flask db migrate -m "mensaje de la migración"
 
 ## Levantando la aplicación
 Para ejecutar el servidor de desarrollo el comando es el siguiente:
+```bash
+pipenv shell
+pipenv install
+set FLASK_APP=app
+set FLASK_ENV=development
+flask run
 ```
-flask --app app --debug run
-```
+O con la siguiente línea
+`pipenv run flask --app app --debug run`
+
+Y si tiene el archivo .env con las variables FLAS_DEBUG=1 y FLASK_APP= app. Sólo debe ejecutar lo siguiente
+`flask run`
+
 ** nota**: Los comandos anteriores se deben ejecutar dentro de `pipenv shell`
 
 ## Blueprint
@@ -52,4 +62,10 @@ Para que los Blueprint estén bien organizados, es mejor trabajarlos como módul
 ## Tarea 
 Crear un nuevo recurso sencillo, sin base de datos, como blueprint bajo a url `/memes` y debe renderiar un html lleno de memes
 
+## MVC (Model-View-Controller)
 
+![MVC](https://cdn.educba.com/academy/wp-content/uploads/2019/04/what-is-mvc-design-pattern.jpg.webp)
+
+Es una arquitectura para separar las responsabilidades en la manipulación de las solicitudes y respuestas. Quien recibe las solicitudes es el Controlador o en flask, las rutas.Los controladores se encargan de revisar que la solicitud cumpla con las características necesarias para entregar una respuesta acorde (que tenga todos los datos). Si el controlador lo permite, se podría opcionalmente, llamar al modelo para obtener o modificar los datos de la BBDD (base de datos). Y finalmente, enviar una respuesta que contenga la presentación de la aplicación. En nuestro caso, la capa de presentación comúnmente conocida como Vistas (views) se llaman Templates.
+
+Por lo tanto, en Flask el MVC podría ser adaptado como MTR (Modelo, Template, Ruta), pero es lo mismo en términos de separar la responsabilidad.
