@@ -18,8 +18,8 @@
         <div class='card m-3' >      
             <img src="{{ message['picture']}}" class = 'card-img-top' alt="{{ message['title']}}"  >
             <div class="card-body">          
-            <h3 class="card-title">{{ message['title'] }}</h3>  
-            {{message['id']}}       
+            <h3 class="card-title">{{ message['title'] }}</h3>               
+            <p class="card-text">{{ message['price'] }}</p> 
             <p class="card-text">{{ message['content'] }}</p> 
             {% if message.user == current_user %}        
             <a href="{{ url_for('messages.update', id = message.id)}}" class="btn btn-warning">Actualizar</a>         
@@ -28,7 +28,9 @@
               <input type="submit" value="Eliminar" class="btn btn-danger">
             </form>
             {% else %}
-            <p class="text-sm">Creado por {{message.user.username}}</p>
+            {% if message['link'] != 'None' %}
+            <a href="{{message['link']}}" class="btn btn-primary">Comprar</a>
+            {% endif %}
             {% endif %}
             </div>
         </div>
