@@ -21,12 +21,16 @@
               rows="15"
               cols="60"
               class="form-control"
-              >{{ request.form.['content'] }}</textarea>
+              >{{ message.content }}</textarea>
     <label for="price">Precio</label>  
-    <input type="text" name="price" id="price">
-    <label for="link">Link de Pago</label>     
-    <input type="text" name="link" id="link" class="form-control">
+    <input type="text"
+           name="price" id="price" 
+           value="{{ message.price }}">
 
-    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+    <label for="link">Link de Pago</label>  
+    <input type="text" name="link" id="link" value="{{ message.link }}">
+               
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-{% endblock %}    
+{% endblock %}   
