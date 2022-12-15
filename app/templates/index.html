@@ -18,8 +18,7 @@
             <img src="{{ message['picture']}}" class = 'card-img-top' alt="{{ message['title']}}"  >
             <div class="card-body">          
             <h3 class="card-title">{{ message['title'] }}</h3>      
-            <p class="card-text">{{ message['content'] }}</p>
-            <p class="card-text">{{ message['price'] }}</p>          
+            <p class="card-text">{{ message['content'] }}</p>                  
             {% if message['price'] %}
             <h3 class="card-title">{{ "${:}".format(message['price']) }}</h3>
             {% endif %}
